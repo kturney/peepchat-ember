@@ -1,24 +1,25 @@
----
 language: node_js
 node_js:
-  - "4"
-
+  - '6'
 sudo: false
-
 cache:
   directories:
     - node_modules
-
 before_install:
   - npm config set spin false
   - npm install -g bower
   - bower --version
   - npm install phantomjs-prebuilt
   - node_modules/phantomjs-prebuilt/bin/phantomjs --version
-
 install:
   - npm install
   - bower install
-
 script:
   - npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: neVIbc+97DKKD1XsRoqLjoQB6dpp2UCY8GdCmUWQntDjv2b906DvHxaCbp1PCvoG4cixhrJffDpxkirdXZgl+ANvPu8H0Bkwnpzvq/7EfEx3oXtTpRceDinoNx+JTHeqVHvjxpHViG42eN9YZ3F5I8EMitIUQgnnBMwSMLCnchRdLuLDzhB0cgZSdWZC/N700MrXqT7h1CbhvG+SLrD+VstqG4ddZk6gV7Ved6alUEVJl4khDZUvVl3sZXHl+2ld4F/L3DxBiz2cK21qbEatxK3hjGdEbAZZV2pbvXWaSqOqQMaiSPMH+YHWV7tOcCN1+fnT6DbKkn4zBLYyV+HHh+ewz5roTocyw8Odmde3VnnqG2FtHSVcC/8CTqYZ5plERcwrAlX18fYw7bIF753qtI2PrWG+QVHzFLe+e9LatE+6w9r0Tb+XuWnqDUldCquj/ik6OByEFO/kByiRrVRfJTk5bcIMy7ugRFpCNlatdIvEOC85Ve7zNfcrLQ7EnHZ6qGthlLneuz7lYOF3yoQ2zmZ7T3c7i2wy8ljwF4CQ6wbt0Y66eMZS0eaF7FFLJQXATG5Y+qHXkLG3z2DbJUYRyBoNIXNMgk1DHXqs6pfDBxDtWjp3jWZgqJeZWRCdldaSCtvkXgwvNltE+dX7N019JrGrPSFTYLlJS6K7MziWYcQ=
+  app: murmuring-garden-64294
+  on:
+    repo: kturney/peepchat-ember
